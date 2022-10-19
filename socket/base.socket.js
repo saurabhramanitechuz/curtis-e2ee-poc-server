@@ -10,7 +10,7 @@ module.exports = {
 
         io.on('connection', (socket) => {
             socket.on('initialize', async (userId) => {
-                let user = await User.findOne({ _id: userId });
+                let user = await User.findOne({ _id: userId }, {ik: 0, sk: 0, opk: 0});
                 socket.user = user;
                 user = users.get(socket.id);
                 if (!user) {
@@ -35,8 +35,7 @@ module.exports = {
                     console.log({ from: userFrom.name, to: userTo.name, message: message });
 
                     for (const [k, v] of users) {
-                        // console.log("v.userId: ", v.userId);
-                        if (v.userId === to) {
+                        if (v.user.id === to) {
                             socket.broadcast.emit('message', message);
                             return;
                         }
