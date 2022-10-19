@@ -10,7 +10,7 @@ module.exports = {
             const messages = await Message.find({ to: id });
             console.log(messages);
             
-            await Message.remove({
+            await Message.deleteOne({
                 to: id
             }).exec();
             

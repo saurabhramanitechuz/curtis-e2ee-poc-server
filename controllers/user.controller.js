@@ -26,7 +26,7 @@ module.exports = {
                 _id: id
             }: {};
 
-            await User.remove(where).exec();
+            await User.deleteMany(where).exec();
             return {
                 'success': 'user_delete'
             };
