@@ -32,7 +32,7 @@ module.exports = {
                     const userFrom = await User.findOne({ _id: from });
                     const userTo = await User.findOne({ _id: to });
 
-                    console.table({ from: userFrom.name, to: userTo.name, message: message });
+                    console.log({ from: userFrom.name, to: userTo.name, message: message });
 
                     for (const [k, v] of users) {
                         // console.log("v.userId: ", v.userId);
