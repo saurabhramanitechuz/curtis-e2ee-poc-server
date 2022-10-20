@@ -35,7 +35,7 @@ module.exports = {
                     console.log({ from: userFrom.name, to: userTo.name, message: message });
 
                     for (const [k, v] of users) {
-                        if (v.user.id === to) {
+                        if (v.user && v.user.id === to) {
                             socket.broadcast.emit('message', message);
                             return;
                         }
