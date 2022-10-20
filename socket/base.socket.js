@@ -10,9 +10,9 @@ module.exports = {
 
         io.on('connection', (socket) => {
             socket.on('initialize', async (userId) => {
-                let user = await User.findOne({ _id: userId }, {ik: 0, sk: 0, opk: 0});
-                socket.user = user;
-                user = users.get(socket.id);
+                const dbUser = await User.findOne({ _id: userId }, {ik: 0, sk: 0, opk: 0});
+                socket.user = dbUser;
+                const user = users.get(socket.id);
                 if (!user) {
                     users.set(socket.id, socket);
                 }
