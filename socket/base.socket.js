@@ -11,6 +11,9 @@ module.exports = {
         io.on('connection', (socket) => {
             socket.on('initialize', async (userId) => {
                 const dbUser = await User.findOne({ _id: userId }, {ik: 0, sk: 0, opk: 0});
+                if(!dbUser) {
+                    return;
+                }
                 socket.user = dbUser;
                 const user = users.get(socket.id);
                 if (!user) {
